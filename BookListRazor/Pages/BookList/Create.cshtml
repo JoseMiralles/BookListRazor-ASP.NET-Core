@@ -8,30 +8,36 @@
 <div class="border container" style="padding: 30px;">
     <form method="post">
 
+        <!-- Enable Validation for required fields -->
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+        <span asp-validation-for="Book.ISBN" class="text-danger"></span>
         <div class="form-group row">
             <div class="col-3">
                 <label asp-for="Book.ISBN"></label>
             </div>
             <div class="col-7">
-                <label asp-for="Book.ISBN" class="form-control"></label>
+                <input asp-for="Book.ISBN" class="form-control"></input>
             </div>
         </div>
 
+        <span asp-validation-for="Book.Name" class="text-danger"></span> <!-- Validation message pops up here. -->
         <div class="form-group row">
             <div class="col-3">
                 <label asp-for="Book.Name"></label>
             </div>
             <div class="col-7">
-                <label asp-for="Book.Name" class="form-control"></label>
+                <input asp-for="Book.Name" class="form-control"></input>
             </div>
         </div>
 
+        <span asp-validation-for="Book.Author" class="text-danger"></span>
         <div class="form-group row">
             <div class="col-3">
                 <label asp-for="Book.Author"></label>
             </div>
             <div class="col-7">
-                <label asp-for="Book.Author" class="form-control"></label>
+                <input asp-for="Book.Author" class="form-control"></input>
             </div>
         </div>
 
@@ -46,3 +52,8 @@
 
     </form>
 </div>
+
+<!-- Adds validation ot the client side before server side. -->
+@section Scripts{ 
+    <partial name="_ValidationScriptsPartial" />
+}

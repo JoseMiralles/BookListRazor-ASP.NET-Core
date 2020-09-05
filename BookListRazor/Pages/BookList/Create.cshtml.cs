@@ -13,6 +13,7 @@ namespace BookListRazor.Pages.BookList
 
         private readonly ApplicationDbContext _db;
 
+        [BindProperty] //This makes it an alternative to passing a Book object in the Post and Get methods.
         public Book Book { get; set; }
 
         public CreateModel(ApplicationDbContext db)
@@ -24,9 +25,19 @@ namespace BookListRazor.Pages.BookList
         {
 
         }
-        public void OnPost()
-        {
 
+        public async Task<IActionResult> OnPost()
+        {
+            if (ModelState.IsValid) //True if the required fields are filled (ex: Book.Name is required).
+            {
+                await this._db.Book.AddAsync(this.Book); //Add book to queue
+                await this._db.SaveChangesAsync(); //Apply changes from the queue
+                return RedirectToPage("Index"); //Return to BookList/Index
+            }
+            else
+            {
+                return Page();
+            }
         }
 
     }
