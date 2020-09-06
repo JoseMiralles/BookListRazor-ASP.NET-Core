@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace BookListRazor.Model
 {
     /// <summary>
-    /// This class is used to create a database migration.
-    /// That migration then gets applied to a database.
+    /// This class represents the structure of the database.
+    /// It can be instantiated with data obtained from the DB.
     /// </summary>
     public class ApplicationDbContext : DbContext
     {
